@@ -1,0 +1,38 @@
+text = "Data science is an interdisciplinary field that uses scientific methods, processes, algorithms and systems to extract knowledge."
+import warnings
+warnings.filterwarnings('ignore')
+import nltk
+from nltk.tokenize import word_tokenize
+from nltk.corpus import stopwords
+from nltk.stem import PorterStemmer
+from nltk.stem import WordNetLemmatizer
+from nltk import pos_tag
+from sklearn.feature_extraction.text import TfidfVectorizer
+nltk.download('punkt')
+nltk.download('punkt_tab')
+nltk.download('stopwords')
+nltk.download('wordnet')
+nltk.download('averaged_perceptron_tagger')
+nltk.download('averaged_perceptron_tagger_eng')
+tokens = word_tokenize(text)
+print("Tokens:", tokens)
+pos_tags = pos_tag(tokens)
+print("POS Tags:", pos_tags)
+stop_words = set(stopwords.words('english'))
+filtered_tokens = [word for word in tokens if word.lower() not in stop_words]
+
+print("After Stopword Removal:", filtered_tokens)
+ps = PorterStemmer()
+stemmed = [ps.stem(word) for word in filtered_tokens]
+
+print("Stemmed Words:", stemmed)
+lemmatizer = WordNetLemmatizer()
+lemmatized = [lemmatizer.lemmatize(word) for word in filtered_tokens]
+print("Lemmatized Words:", lemmatized)
+documents = [text]
+
+vectorizer = TfidfVectorizer()
+tfidf_matrix = vectorizer.fit_transform(documents)
+
+print("Feature Names:", vectorizer.get_feature_names_out())
+print("TF-IDF Matrix:\n", tfidf_matrix.toarray()) 

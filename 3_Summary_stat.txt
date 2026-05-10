@@ -1,0 +1,42 @@
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+df = pd.read_csv('iris.csv')
+df.head()
+df.tail()
+df
+df.describe(include = 'all')
+df.isnull().sum()
+df.dtypes
+df['species'].unique()
+df['species'] = df['species'].map({'setosa' : 0 , 'versicolor' : 1 , 'virginica' : 3 })
+df.head()
+df.tail()
+df.describe()
+df.mean()
+df.median()
+df.min()
+df.max()
+df.std()
+df.groupby('species')['petal_width'].agg(['min','max','median','mean','std'])
+df2 = pd.read_csv('iris.csv')
+df2.head()
+df2.tail()
+df2.describe()
+def stat_summary(data):
+    return {
+        'Mean' : data.mean(),
+        'Median' : data.median(),
+        'Minimum' : data.min(),
+        'Maximum is' : data.max(),
+        '25th Percentile' : data.quantile(0.25),
+        '50th Percentile' : data.quantile(0.50),
+        '75th Percentile' : data.quantile(0.75)
+    }
+for sp in df2['species'].unique():
+    print('stats for',sp)
+    print(stat_summary(df2[df2['species']==sp]['petal_length']))
+df.groupby('species').mean()
+df.var()
+    
+        

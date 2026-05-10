@@ -1,0 +1,46 @@
+object PalindromeCheck {
+  def main(args : Array[String]):Unit = {
+    println("Enter Your String to check Palindrome")
+    val str = scala.io.StdIn.readLine()
+    val cleaned_str = str.toLowerCase.replaceAll("\\W","")
+
+    if(str == cleaned_str.reverse){
+      println("String is Pallindrome ")
+    }else {
+      println("String is not Pallindrome ")
+    }
+  }
+}
+
+
+object IfElseExample {
+  def main(args: Array[String]): Unit = {
+    println("Enter a number: ")
+   
+    val number = scala.io.StdIn.readInt()  // Read user input
+
+    if (number > 0) {
+      println(s"$number is Positive")
+    } else if (number < 0) {
+      println(s"$number is Negative")
+    } else {
+      println("The number is Zero")
+    }
+  }
+}
+
+
+object Practice{
+    def main(args: Array[String]): Unit = {
+        println("Enter Your NUmber to Check Even Odd");
+        val number = scala.io.StdIn.readInt()
+        if(number % 2 == 0){
+            println(s"$number is Even")
+        }else {
+            println(s"$number is odd")
+        }
+    }
+}
+
+
+

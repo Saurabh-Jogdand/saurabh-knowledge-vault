@@ -1,0 +1,32 @@
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+df = pd.read_csv('iris.csv')
+print(df.head())
+print(df.tail())
+df.describe()
+print(f"Shape of the dataset is : {df.shape}")
+print(f"Columns in dataset are : {df.columns}")
+df.size
+df.dtypes
+df.isnull()
+df.isnull().sum()
+df.describe()
+df.describe(include='all')
+df['species'] = df['species'].astype('category')
+df.head()
+print(df.dtypes)
+df['species_label'] = df['species'].cat.codes
+df.head()
+df
+df_encoded = pd.get_dummies(df, columns=['species'])
+
+print(df_encoded.head())
+
+df_encoded
+print(df_encoded.shape)
+print(df_encoded.columns)
+df.head()
+
+df_encoded
