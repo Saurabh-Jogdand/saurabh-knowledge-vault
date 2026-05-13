@@ -1,0 +1,34 @@
+graph = {
+    1: [[4,1], [5,4], [2,2]],
+    2: [[1,2], [4,3], [3,3], [6,7]],
+    3: [[4,5], [2,3], [6,8]],
+    4: [[5,9], [1,1], [3,5], [2,3]],
+    5: [[4,9], [1,4]],
+    6: [[3,8], [2,7]]
+}
+
+cost = {}
+for node in graph:
+    cost[node] = 9999
+cost[1] = 0
+visited = []
+parent = {}
+while len(visited) < len(graph):
+    minNode = None
+    for node in graph:
+        if node not in visited:
+            if minNode is None or cost[node] < cost[minNode]:
+                minNode = node
+    visited.append(minNode)
+    for neighbour, weight in graph[minNode]:
+        if neighbour not in visited and weight < cost[neighbour]:
+            cost[neighbour] = weight
+            parent[neighbour] = minNode
+
+
+print("Minimum Spanning Tree:")
+total = 0
+for node in parent:
+    print(parent[node], "-", node, "=", cost[node])
+    total = total + cost[node]
+print("Total Cost =", total)    

@@ -1,0 +1,41 @@
+graph = {
+    'A' : [['B',4],['C',5]],
+    'B' : [['A',4],['D',9],['C',11]],
+    'C' : [['A',5],['B',11],['E',3]],
+    'D' : [['B',9],['F',2],['E',13]],
+    'E' : [['B',7],['C',3],['D',13],['F',6]],
+    'F' : [['D',2],['E',6]]
+}
+
+distance = {}
+for node in graph:
+    distance[node] = 9999
+distance['A'] = 0
+
+visited = []
+
+while(len(visited) < len(graph)):
+    minNode = None
+    for node in graph:
+        if node not in visited:
+            if minNode is None or distance[node] < distance[minNode]:
+                minNode = node
+    visited.append(minNode)
+
+    for neighbour,weight in graph[minNode]:
+        if distance[minNode] + weight < distance[neighbour]:
+            distance[neighbour] = distance[minNode] + weight 
+
+print("Shortest Path")
+
+for node in distance:
+    print(node,distance[node])
+
+graph = {
+    'A' : [['B',4],['C',5]],
+    'B' : [['A',4],['D',9],['C',11]],
+    'C' : [['A',5],['B',11],['E',3]],
+    'D' : [['B',9],['F',2],['E',13]],
+    'E' : [['B',7],['C',3],['D',13],['F',6]],
+    'F' : [['D',2],['E',6]]
+}

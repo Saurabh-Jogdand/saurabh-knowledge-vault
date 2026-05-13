@@ -1,0 +1,53 @@
+graph = {
+    'a': [('b',4), ('c',3)],
+    'b': [('f',5), ('e',12)],
+    'c': [('e',10), ('d',7)],
+    'd': [('e',2)],
+    'e': [('z',5)],
+    'f': [('z',16)],
+    'z': []
+}
+
+# Heuristic values
+h = {
+    'a': 14,
+    'b': 12,
+    'c': 11,
+    'd': 6,
+    'e': 4,
+    'f': 11,
+    'z': 0
+}
+
+start = 'a'
+goal = 'z'
+
+open = [start]
+visited = []
+
+while open:
+
+    current = open.pop(0)
+
+    print(current)
+
+    if current == goal:
+        print("Goal Reached")
+        break
+
+    visited.append(current)
+
+    neighbours = graph[current]
+
+    # Move towards goal first
+    neighbours.sort(
+        key=lambda x:
+        h[x[0]]
+    )
+
+    for node, cost in neighbours:
+
+        # Valid path check
+        if node not in visited and node not in open:
+
+            open.append(node)
